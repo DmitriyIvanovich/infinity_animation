@@ -4,25 +4,36 @@ main {
     align-items: center;
     min-height: 100vh;
 }
-.infinity_animation{
+
+.infinity_animation {
     /* transform:rotate(90deg) */
 }
+
 .circle {
     position: relative;
     display: flex;
     align-items: center;
     --timeLoop: 2s;
     --pointN: 20;
-    --point_r: 20px;
+    --pointR: 20px;
     --pointColor: #0f0;
-    width: 200px;
-    height: 200px;
+    --circleD: 200px;
+    width: var(--circleD);
+    height: var(--circleD);
     transform-origin: center;
     transform: rotate(-90deg);
 }
 
+@media (max-width:400px) {
+    .circle {
+        --pointN: 20;
+        --pointR: 10px;
+        --circleD: 100px;
+    }
+}
+
 .circle:nth-child(2) {
-    transform: translateY(calc(-1 * var(--point_r))) rotate(-90deg) rotateY(180deg);
+    transform: translateY(calc(-1 * var(--pointR))) rotate(-90deg) rotateY(180deg);
 }
 
 .infinity_animation .point-box {
@@ -37,16 +48,16 @@ main {
 .infinity_animation .point-box:before {
     content: "";
     position: absolute;
-    width: var(--point_r);
-    height: var(--point_r);
+    width: var(--pointR);
+    height: var(--pointR);
     top: 50%;
     transform: translateY(-50%);
     left: 0;
     background-color: var(--pointColor);
     border-radius: 50%;
     box-shadow:
-        0 0 10px #0f0,
-        0 0 20px #0f0,
+        0 0 10px #0f05,
+        0 0 20px #0f05,
         0 0 40px #0f0,
         0 0 60px #0f0,
         0 0 80px #0f0,
@@ -57,7 +68,7 @@ main {
 }
 
 .circle:nth-child(2) .point-box:before {
-    animation-delay: calc( var(--timeLoop) / var(--pointN) * var(--i) / 2 + var(--timeLoop) / 2);
+    animation-delay: calc(var(--timeLoop) / var(--pointN) * var(--i) / 2 + var(--timeLoop) / 2);
 }
 
 @keyframes anime {
